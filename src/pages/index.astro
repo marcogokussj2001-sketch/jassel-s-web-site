@@ -1,0 +1,525 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const IG = 'https://www.instagram.com/dras.karen.najera_jass.flores/';
+const IG_DM = 'https://ig.me/m/dras.karen.najera_jass.flores';
+const ADDRESS = 'Calle Miguel de Cervantes Saavedra #222, Zona Centro, Durango, Dgo.';
+const MAPS_Q = encodeURIComponent('Calle Miguel de Cervantes Saavedra 222, Zona Centro, Durango, Dgo., México');
+const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${MAPS_Q}`;
+const MAPS_EMBED = `https://www.google.com/maps?q=${MAPS_Q}&output=embed`;
+
+const ticker = [
+  'Urgencias 24 hrs',
+  'Cirujanas dentistas',
+  'Adultos, niños y adolescentes',
+  'Centro de Durango',
+  'Agenda por mensaje directo',
+];
+
+const TOOTH =
+  'M60 22 C46 12 26 10 18 24 C10 38 14 58 20 76 C26 94 28 120 38 128 C46 134 50 118 52 104 C54 92 58 88 60 88 C62 88 66 92 68 104 C70 118 74 134 82 128 C92 120 94 94 100 76 C106 58 110 38 102 24 C94 10 74 12 60 22 Z';
+
+const services = [
+  {
+    name: 'Limpieza',
+    note: 'Sonrisa fresca y encías sanas',
+    text: 'Profilaxis y limpieza profunda para retirar sarro y placa, con pulido y consejos de cuidado en casa.',
+    bg: 'from-[#fbe3ea] to-[#f6cfdb]',
+    icon: 'clean',
+  },
+  {
+    name: 'Restauraciones',
+    note: 'Resinas que se ven naturales',
+    text: 'Tratamos caries y piezas fracturadas con materiales del color de tu diente para recuperar forma y función.',
+    bg: 'from-[#fff4f6] to-[#f3c4d2]',
+    icon: 'restore',
+  },
+  {
+    name: 'Endodoncia',
+    note: 'Salva tu diente, sin drama',
+    text: 'Tratamiento de conductos para eliminar la infección y conservar tu pieza natural, con anestesia local.',
+    bg: 'from-[#f6cfdb] to-[#eeb3c5]',
+    icon: 'root',
+  },
+  {
+    name: 'Cirugía menor',
+    note: 'Extracciones con cuidado',
+    text: 'Extracciones simples y procedimientos menores con indicaciones claras para una recuperación tranquila.',
+    bg: 'from-[#fbe3ea] to-[#e8a5b8]',
+    icon: 'surgery',
+  },
+  {
+    name: 'Diagnóstico',
+    note: 'Revisión completa y a tiempo',
+    text: 'Exploración, valoración y plan de tratamiento a tu medida. Prevenir siempre es más sencillo.',
+    bg: 'from-[#fff4f6] to-[#f6cfdb]',
+    icon: 'check',
+  },
+];
+
+const steps = [
+  {
+    n: '01',
+    title: 'Revisión y diagnóstico',
+    text: 'Escuchamos qué te preocupa, revisamos tu boca a detalle y te explicamos lo que encontramos, sin tecnicismos.',
+  },
+  {
+    n: '02',
+    title: 'Un plan a tu medida',
+    text: 'Te proponemos los tratamientos en orden de prioridad para que decidas con toda la información.',
+  },
+  {
+    n: '03',
+    title: 'Tratamiento y seguimiento',
+    text: 'Cuidamos cada paso y te acompañamos después, con indicaciones claras para mantener tu sonrisa sana.',
+  },
+];
+
+const values = [
+  ['Trato cálido', 'Un espacio tranquilo donde puedes preguntar todo.'],
+  ['Explicaciones claras', 'Sabes qué se hace, por qué y cuánto tiempo toma.'],
+  ['Higiene impecable', 'Protocolos de esterilización en cada consulta.'],
+  ['Para toda la familia', 'Atendemos a adultos, niños y adolescentes.'],
+];
+
+const faqs = [
+  [
+    '¿Atienden urgencias?',
+    'Sí. Contamos con atención de urgencias las 24 horas. Escríbenos por Instagram y te orientamos lo antes posible.',
+  ],
+  [
+    '¿Atienden a niños?',
+    'Claro. Atendemos a adultos, niños y adolescentes, adaptando cada consulta para que los más pequeños se sientan en confianza.',
+  ],
+  [
+    '¿Cada cuánto debo hacerme una limpieza?',
+    'En general se recomienda una revisión y limpieza cada seis meses, aunque en tu valoración te diremos la frecuencia ideal para ti.',
+  ],
+  [
+    '¿La endodoncia duele?',
+    'El tratamiento se realiza con anestesia local, por lo que la mayoría de los pacientes solo siente presión. Te explicamos todo antes de empezar.',
+  ],
+  [
+    '¿Cómo agendo mi cita?',
+    'Envíanos un mensaje directo en Instagram con tu nombre y el motivo de tu visita, y te compartimos los horarios disponibles.',
+  ],
+];
+---
+
+<Layout>
+  <!-- ============ Announcement ticker ============ -->
+  <div class="bg-foreground py-2.5 text-[13px] font-medium text-white/90">
+    <div class="marquee" style="--marquee-speed: 38s">
+      {[0, 1].map((k) => (
+        <div class="marquee__track" aria-hidden={k === 1 ? 'true' : undefined}>
+          {[...ticker, ...ticker].map((t) => (
+            <>
+              <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-rose" />
+              <span class="whitespace-nowrap">{t}</span>
+            </>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ============ Navigation ============ -->
+  <header class="sticky top-0 z-50 border-b border-rose/30 bg-background/90 backdrop-blur-md">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-10">
+      <a href="#inicio" class="flex items-center gap-3" aria-label="Odontología General — inicio">
+        <span class="block w-11 overflow-hidden" style="aspect-ratio: 1872 / 1500">
+          <img src="/images/logo.png" alt="" class="w-full" width="1872" height="2120" />
+        </span>
+        <span class="font-script text-2xl font-bold leading-none text-berry sm:text-[1.7rem]">Odontología General</span>
+      </a>
+
+      <ul class="hidden items-center gap-8 text-[15px] font-medium lg:flex">
+        <li><a class="transition-colors hover:text-berry" href="#tratamientos">Tratamientos</a></li>
+        <li><a class="transition-colors hover:text-berry" href="#visita">Tu visita</a></li>
+        <li><a class="transition-colors hover:text-berry" href="#nosotras">Nosotras</a></li>
+        <li><a class="transition-colors hover:text-berry" href="#ubicacion">Ubicación</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <a href={IG} target="_blank" rel="noopener" aria-label="Instagram" class="hidden h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-blush sm:flex">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href={IG_DM} target="_blank" rel="noopener" class="btn hidden bg-berry px-6 py-3.5 text-white sm:inline-flex">Agenda tu cita</a>
+        <button data-menu-btn aria-expanded="false" aria-label="Abrir menú" class="flex h-11 w-11 items-center justify-center rounded-full hover:bg-blush lg:hidden">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div data-menu class="hidden border-t border-rose/30 bg-background px-4 pb-6 pt-2 lg:hidden">
+      <ul class="flex flex-col text-lg font-medium">
+        <li><a class="block py-3" href="#tratamientos">Tratamientos</a></li>
+        <li><a class="block py-3" href="#visita">Tu visita</a></li>
+        <li><a class="block py-3" href="#nosotras">Nosotras</a></li>
+        <li><a class="block py-3" href="#ubicacion">Ubicación</a></li>
+      </ul>
+      <a href={IG_DM} target="_blank" rel="noopener" class="btn mt-3 w-full bg-berry text-white">Agenda tu cita</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ Hero ============ -->
+    <section id="inicio" class="relative overflow-hidden bg-blush">
+      <!-- soft decorative blobs -->
+      <div class="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-white/50 blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-20 bottom-0 h-[28rem] w-[28rem] rounded-full bg-rose/30 blur-3xl"></div>
+
+      <div class="relative mx-auto grid max-w-7xl items-center gap-16 px-4 pb-24 pt-14 sm:px-6 md:pt-20 lg:grid-cols-[1.1fr_1fr] lg:px-10 lg:pb-32">
+        <div>
+          <h1 class="font-display text-[clamp(3.4rem,10vw,7.6rem)] uppercase leading-none tracking-tight">
+            <span class="label bg-white" style="--r:-1.5deg; --d:.1s">Sonrisas</span><br />
+            <span class="label -mt-1 bg-berry text-white" style="--r:1deg; --d:.3s">cuidadas</span><br />
+            <span class="label -mt-1 bg-white" style="--r:-1deg; --d:.5s">con amor<span class="text-berry">.</span></span>
+          </h1>
+
+          <p class="reveal mt-10 max-w-md text-lg leading-relaxed text-foreground/80" style="--d:.6s">
+            Odontología general para adultos, niños y adolescentes en el Centro de Durango.
+            Limpiezas, restauraciones, endodoncias y más, con la calma y el cuidado que mereces.
+          </p>
+
+          <div class="reveal mt-8 flex flex-wrap gap-3" style="--d:.75s">
+            <a href={IG_DM} target="_blank" rel="noopener" class="btn bg-foreground text-white">Agenda tu cita</a>
+            <a href="#tratamientos" class="btn bg-white text-foreground">Ver tratamientos</a>
+          </div>
+
+          <div class="reveal mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium text-foreground/70" style="--d:.9s">
+            <span class="flex items-center gap-2"><span class="text-berry">♡</span> Atendido por cirujanas dentistas</span>
+            <span class="flex items-center gap-2"><span class="text-berry">♡</span> Urgencias 24 hrs</span>
+          </div>
+        </div>
+
+        <!-- Collage -->
+        <div class="relative mx-auto h-[460px] w-full max-w-[460px] sm:h-[540px]">
+          <!-- main polaroid -->
+          <div class="float absolute right-0 top-4 w-[78%]" style="--fd:0s">
+            <div class="polaroid relative" style="--r:3deg">
+              <span class="tape -left-10 -top-3" style="--r:-18deg"></span>
+              <div class="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-gradient-to-br from-white via-[#fff6f8] to-[#fbe3ea]">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,.85),transparent_55%)]"></div>
+                <img src="/images/logo.png" alt="Logotipo de Odontología General: un diente con una lupa y un corazón" class="relative w-[78%] drop-shadow-sm" width="1872" height="2120" />
+              </div>
+              <span class="tape -bottom-3 -right-8" style="--r:-22deg; width:120px"></span>
+            </div>
+          </div>
+
+          <!-- small polaroid -->
+          <div class="float absolute bottom-0 left-0 w-[58%] sm:w-[50%]" style="--fd:-3s">
+            <div class="polaroid" style="--r:-7deg">
+              <div class="flex aspect-square items-center justify-center bg-gradient-to-br from-white to-[#fbe3ea]">
+                <svg viewBox="0 0 120 140" class="w-1/2" fill="none" stroke="#e8a5b8" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+                  <path d={TOOTH} />
+                  <path d="M96 4 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="#e8a5b8" stroke="none" />
+                  <path d="M14 98 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#c85a7c" stroke="none" />
+                  <path d="M38 40 q8 -10 20 -6" stroke-width="3" />
+                </svg>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between gap-2 px-1">
+                <span class="font-script text-xl font-bold text-foreground">Limpieza dental</span>
+                <span class="text-sm font-semibold text-berry">✨</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- rotating sticker -->
+          <div class="absolute -top-2 left-2 z-10 h-32 w-32 sm:left-6 sm:h-36 sm:w-36">
+            <div class="relative h-full w-full rounded-full bg-berry text-white shadow-[0_18px_40px_-14px_rgba(200,90,124,.8)]">
+              <svg viewBox="0 0 100 100" class="spin-slow absolute inset-0 h-full w-full">
+                <defs><path id="circ" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0" /></defs>
+                <text font-size="9.5" font-weight="700" letter-spacing="2.4" fill="white" style="font-family: 'Instrument Sans', sans-serif">
+                  <textPath href="#circ">URGENCIAS · 24 HORAS · URGENCIAS · 24 HORAS ·</textPath>
+                </text>
+              </svg>
+              <div class="absolute inset-0 flex -rotate-6 flex-col items-center justify-center leading-none">
+                <span class="font-display text-4xl sm:text-[2.6rem]">24h</span>
+                <span class="font-script text-lg">siempre</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Services ============ -->
+    <section id="tratamientos" class="mx-auto max-w-7xl scroll-mt-24 px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+      <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <h2 class="font-display text-[clamp(2.8rem,7vw,5.5rem)] uppercase leading-[0.95] tracking-tight">
+          Tratamientos para<br /> cada <span class="text-berry">sonrisa</span>
+        </h2>
+        <p class="max-w-sm text-lg leading-relaxed text-muted">
+          ¿No sabes por dónde empezar? Elige lo que más te preocupa y te ayudamos con el resto.
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-2 gap-x-5 gap-y-14 sm:grid-cols-3 lg:grid-cols-5">
+        {services.map((s, i) => (
+          <article class="service reveal group text-center" style={`--d:${i * 0.08}s`}>
+            <div class={`oval bg-gradient-to-b ${s.bg} flex items-center justify-center`}>
+              <svg viewBox="0 0 120 140" class="w-[58%]" fill="none" stroke="#c85a7c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+                <path d={TOOTH} fill="rgba(255,255,255,.7)" />
+                {s.icon === 'clean' && (
+                  <>
+                    <path d="M100 6 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3z" fill="#c85a7c" stroke="none" />
+                    <path d="M18 104 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#e8a5b8" stroke="none" />
+                    <path d="M36 42 q10 -12 24 -6" />
+                  </>
+                )}
+                {s.icon === 'restore' && (
+                  <path d="M44 40 q16 -10 32 0 q4 14 -16 22 q-20 -8 -16 -22z" fill="#e8a5b8" />
+                )}
+                {s.icon === 'root' && (
+                  <>
+                    <path d="M46 56 q14 -12 28 0" />
+                    <path d="M50 60 C48 80 44 100 40 120" stroke-dasharray="4 5" />
+                    <path d="M70 60 C72 80 76 100 80 120" stroke-dasharray="4 5" />
+                  </>
+                )}
+                {s.icon === 'surgery' && (
+                  <>
+                    <circle cx="60" cy="56" r="17" fill="#fff" />
+                    <path d="M60 46 v20 M50 56 h20" stroke-width="4" />
+                  </>
+                )}
+                {s.icon === 'check' && (
+                  <>
+                    <circle cx="70" cy="58" r="20" fill="#fff" />
+                    <path d="M84 72 l16 16" stroke-width="6" />
+                    <path d="M70 66 c-8 -5 -11 -9 -10 -13 c1 -4 7 -5 10 -1 c3 -4 9 -3 10 1 c1 4 -2 8 -10 13z" fill="#e8a5b8" stroke-width="1.5" />
+                  </>
+                )}
+              </svg>
+            </div>
+            <h3 class="mt-6 font-display text-[1.9rem] uppercase leading-none tracking-tight transition-colors group-hover:text-berry">{s.name}</h3>
+            <p class="mt-2 text-[15px] text-muted">{s.note}</p>
+            <p class="mx-auto mt-3 max-w-[16rem] text-sm leading-relaxed text-foreground/70 opacity-100 lg:opacity-0 lg:transition-opacity lg:duration-500 lg:group-hover:opacity-100">{s.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- ============ Script marquee band ============ -->
+    <div class="-rotate-2 scale-[1.03] bg-rose py-5 text-white">
+      <div class="marquee" style="--marquee-speed: 26s">
+        {[0, 1].map((k) => (
+          <div class="marquee__track" aria-hidden="true">
+            {['Sonríe', 'Cuida', 'Brilla', 'Confía', 'Sonríe', 'Cuida', 'Brilla', 'Confía'].map((w) => (
+              <>
+                <span class="whitespace-nowrap font-script text-5xl font-bold md:text-6xl">{w}</span>
+                <span class="text-3xl">♡</span>
+              </>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ============ Your visit (steps) ============ -->
+    <section id="visita" class="scroll-mt-24 bg-cream py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div class="reveal max-w-2xl">
+          <span class="font-script text-3xl text-berry">tu primera visita</span>
+          <h2 class="mt-2 font-display text-[clamp(2.8rem,7vw,5.5rem)] uppercase leading-[0.95] tracking-tight">
+            Paso a paso,<br /><span class="label !animate-none !opacity-100 bg-berry px-3 text-white" style="--r:-1deg; transform: rotate(-1deg)">sin prisas</span>
+          </h2>
+          <p class="mt-6 max-w-lg text-lg leading-relaxed text-muted">
+            Ir al dentista no tiene por qué dar nervios. Así es como cuidamos de ti desde que entras al consultorio.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-6 md:grid-cols-3">
+          {steps.map((st, i) => (
+            <div class="reveal group relative overflow-hidden bg-white p-8 shadow-[0_24px_50px_-30px_rgba(120,40,70,.35)] transition-transform duration-500 hover:-translate-y-2" style={`--d:${i * 0.12}s`}>
+              <span class="font-display text-7xl text-petal transition-colors duration-500 group-hover:text-rose">{st.n}</span>
+              <h3 class="mt-4 font-display text-3xl uppercase leading-tight tracking-tight">{st.title}</h3>
+              <p class="mt-3 leading-relaxed text-muted">{st.text}</p>
+              <span class="absolute -bottom-10 -right-10 h-28 w-28 rounded-full bg-blush transition-transform duration-700 group-hover:scale-150"></span>
+            </div>
+          ))}
+        </div>
+
+        <div class="reveal mt-12 flex flex-col items-start gap-4 border-t border-rose/40 pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-lg font-medium">¿Tienes dolor o una urgencia? <span class="text-berry">Te atendemos las 24 horas.</span></p>
+          <a href={IG_DM} target="_blank" rel="noopener" class="btn bg-berry text-white">Escríbenos ahora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section id="nosotras" class="mx-auto max-w-7xl scroll-mt-24 px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+      <div class="grid items-center gap-16 lg:grid-cols-2">
+        <div class="relative mx-auto grid w-full max-w-lg grid-cols-2 gap-5">
+          {[
+            ['Dra. Karen Nájera', 'Cirujana dentista', 'KN', '-4deg', 'mt-0'],
+            ['Dra. Jass Flores', 'Cirujana dentista', 'JF', '3deg', 'mt-14'],
+          ].map(([name, role, ini, r, mt], i) => (
+            <figure class={`reveal ${mt}`} style={`--d:${i * 0.15}s`}>
+              <div class="polaroid relative" style={`--r:${r}`}>
+                <span class="tape -top-4 left-1/2 -translate-x-1/2" style="--r:4deg; width:90px; height:26px"></span>
+                <div class="flex aspect-[3/4] items-center justify-center bg-gradient-to-b from-blush to-petal">
+                  <span class="font-script text-6xl font-bold text-berry/80">{ini}</span>
+                </div>
+                <figcaption class="mt-3 px-1">
+                  <span class="block font-display text-xl uppercase leading-tight">{name}</span>
+                  <span class="text-sm text-muted">{role}</span>
+                </figcaption>
+              </div>
+            </figure>
+          ))}
+        </div>
+
+        <div>
+          <div class="reveal">
+            <span class="font-script text-3xl text-berry">nosotras</span>
+            <h2 class="mt-2 font-display text-[clamp(2.8rem,6vw,4.8rem)] uppercase leading-[0.95] tracking-tight">
+              Hecho por mujeres,<br />pensado para ti
+            </h2>
+            <p class="mt-6 text-lg leading-relaxed text-muted">
+              Somos cirujanas dentistas y creamos un consultorio donde te sientes escuchada y en confianza.
+              Cuidamos tu salud bucal con detalle, honestidad y mucho cariño, para que cada visita sea ligera.
+            </p>
+          </div>
+
+          <ul class="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {values.map(([t, d], i) => (
+              <li class="reveal flex gap-4" style={`--d:${i * 0.08}s`}>
+                <span class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blush text-berry">♡</span>
+                <div>
+                  <h3 class="font-semibold">{t}</h3>
+                  <p class="mt-1 text-[15px] leading-relaxed text-muted">{d}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="bg-blush py-24 lg:py-32">
+      <div class="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.4fr] lg:px-10">
+        <div class="reveal">
+          <h2 class="font-display text-[clamp(2.8rem,6vw,4.8rem)] uppercase leading-[0.95] tracking-tight">
+            Preguntas<br /><span class="text-berry">frecuentes</span>
+          </h2>
+          <p class="mt-6 max-w-sm text-lg leading-relaxed text-muted">
+            ¿Te quedó alguna duda? Mándanos un mensaje y con gusto te respondemos.
+          </p>
+        </div>
+        <div class="divide-y divide-rose/50 border-y border-rose/50">
+          {faqs.map(([q, a], i) => (
+            <details class="reveal group py-2" style={`--d:${i * 0.06}s`}>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-4 text-lg font-semibold">
+                {q}
+                <span class="faq-plus flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-xl text-berry transition-transform duration-300">+</span>
+              </summary>
+              <p class="pb-5 pr-12 leading-relaxed text-foreground/75">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Location ============ -->
+    <section id="ubicacion" class="mx-auto max-w-7xl scroll-mt-24 px-4 py-24 sm:px-6 lg:px-10 lg:py-32">
+      <div class="grid items-stretch gap-10 lg:grid-cols-2">
+        <div class="reveal flex flex-col justify-center">
+          <span class="font-script text-3xl text-berry">visítanos</span>
+          <h2 class="mt-2 font-display text-[clamp(2.8rem,6vw,4.8rem)] uppercase leading-[0.95] tracking-tight">
+            En el corazón<br />de Durango
+          </h2>
+          <dl class="mt-10 space-y-6 text-lg">
+            <div class="flex gap-4">
+              <dt class="sr-only">Dirección</dt>
+              <span class="mt-0.5 text-berry" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+              </span>
+              <dd>Calle Miguel de Cervantes Saavedra #222,<br />Zona Centro · Durango, Dgo.</dd>
+            </div>
+            <div class="flex gap-4">
+              <dt class="sr-only">Horario</dt>
+              <span class="mt-0.5 text-berry" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <dd>Consultas con cita previa<br /><span class="font-semibold text-berry">Urgencias 24 horas</span></dd>
+            </div>
+            <div class="flex gap-4">
+              <dt class="sr-only">Instagram</dt>
+              <span class="mt-0.5 text-berry" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+              </span>
+              <dd><a href={IG} target="_blank" rel="noopener" class="underline decoration-rose decoration-2 underline-offset-4 hover:text-berry">@dras.karen.najera_jass.flores</a></dd>
+            </div>
+          </dl>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href={MAPS_LINK} target="_blank" rel="noopener" class="btn bg-foreground text-white">Cómo llegar</a>
+            <a href={IG_DM} target="_blank" rel="noopener" class="btn border-2 border-foreground bg-white">Agenda tu cita</a>
+          </div>
+        </div>
+
+        <div class="reveal relative min-h-[380px]" style="--d:.15s">
+          <span class="tape -top-3 left-8" style="--r:-8deg"></span>
+          <span class="tape -bottom-3 right-8" style="--r:-8deg"></span>
+          <div class="polaroid h-full" style="--r:1.5deg">
+            <iframe
+              title={`Mapa: ${ADDRESS}`}
+              src={MAPS_EMBED}
+              class="h-full min-h-[360px] w-full grayscale-[35%] sepia-[15%]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Final CTA ============ -->
+    <section class="relative overflow-hidden bg-berry px-4 py-24 text-center text-white sm:px-6 lg:py-32">
+      <div class="pointer-events-none absolute -left-20 -top-20 h-80 w-80 rounded-full bg-white/10 blur-2xl"></div>
+      <div class="pointer-events-none absolute -bottom-24 -right-10 h-96 w-96 rounded-full bg-rose/40 blur-3xl"></div>
+      <div class="reveal relative mx-auto max-w-3xl">
+        <span class="font-script text-4xl text-white/90">te esperamos</span>
+        <h2 class="mt-3 font-display text-[clamp(3rem,8vw,6.5rem)] uppercase leading-[0.92] tracking-tight">
+          Tu sonrisa merece<br />
+          <span class="label !animate-none !opacity-100 mt-2 bg-white px-4 text-berry" style="transform: rotate(-1.5deg)">este cuidado</span>
+        </h2>
+        <p class="mx-auto mt-8 max-w-md text-lg text-white/85">Escríbenos por Instagram y agenda tu valoración. Respondemos con gusto.</p>
+        <a href={IG_DM} target="_blank" rel="noopener" class="btn mt-10 bg-white text-foreground">Agenda tu cita por Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Footer ============ -->
+  <footer class="bg-foreground text-white/80">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr] lg:px-10">
+      <div>
+        <span class="font-script text-4xl font-bold text-rose">Odontología General</span>
+        <p class="mt-4 max-w-sm leading-relaxed text-white/60">
+          Dras. Karen Nájera &amp; Jass Flores, cirujanas dentistas. Atención para adultos, niños y adolescentes en Durango.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-display text-xl uppercase tracking-wide text-white">Explora</h3>
+        <ul class="mt-4 space-y-2">
+          <li><a href="#tratamientos" class="hover:text-rose">Tratamientos</a></li>
+          <li><a href="#visita" class="hover:text-rose">Tu visita</a></li>
+          <li><a href="#nosotras" class="hover:text-rose">Nosotras</a></li>
+          <li><a href="#ubicacion" class="hover:text-rose">Ubicación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-display text-xl uppercase tracking-wide text-white">Contacto</h3>
+        <ul class="mt-4 space-y-2">
+          <li>Calle Miguel de Cervantes Saavedra #222, Zona Centro, Durango, Dgo.</li>
+          <li><a href={IG} target="_blank" rel="noopener" class="hover:text-rose">Instagram</a></li>
+          <li class="text-rose">Urgencias 24 hrs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <p class="mx-auto max-w-7xl px-4 py-6 text-sm text-white/45 sm:px-6 lg:px-10">© {new Date().getFullYear()} Odontología General · Durango, Dgo.</p>
+    </div>
+  </footer>
+</Layout>
