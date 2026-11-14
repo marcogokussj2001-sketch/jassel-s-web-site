@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const BASE = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const LOGO = `${BASE}images/logo.png`;
+
 const IG = 'https://www.instagram.com/dras.karen.najera_jass.flores/';
 const IG_DM = 'https://ig.me/m/dras.karen.najera_jass.flores';
 const ADDRESS = 'Calle Miguel de Cervantes Saavedra #222, Zona Centro, Durango, Dgo.';
@@ -128,7 +131,7 @@ const faqs = [
     <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-10">
       <a href="#inicio" class="flex items-center gap-3" aria-label="Odontología General — inicio">
         <span class="block w-11 overflow-hidden" style="aspect-ratio: 1872 / 1500">
-          <img src="/images/logo.png" alt="" class="w-full" width="1872" height="2120" />
+          <img src={LOGO} alt="" class="w-full" width="1872" height="2120" />
         </span>
         <span class="font-script text-2xl font-bold leading-none text-berry sm:text-[1.7rem]">Odontología General</span>
       </a>
@@ -200,7 +203,7 @@ const faqs = [
               <span class="tape -left-10 -top-3" style="--r:-18deg"></span>
               <div class="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-gradient-to-br from-white via-[#fff6f8] to-[#fbe3ea]">
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,.85),transparent_55%)]"></div>
-                <img src="/images/logo.png" alt="Logotipo de Odontología General: un diente con una lupa y un corazón" class="relative w-[78%] drop-shadow-sm" width="1872" height="2120" />
+                <img src={LOGO} alt="Logotipo de Odontología General: un diente con una lupa y un corazón" class="relative w-[78%] drop-shadow-sm" width="1872" height="2120" />
               </div>
               <span class="tape -bottom-3 -right-8" style="--r:-22deg; width:120px"></span>
             </div>
